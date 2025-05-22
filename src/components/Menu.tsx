@@ -21,16 +21,16 @@ export const Menu = () => {
 		<header className="fixed z-2 mt-3 flex w-full flex-col items-center justify-center">
 			<section
 				aria-label="Menu access"
-				className="top relative flex h-14 w-3/4 justify-between gap-4 rounded-md bg-[#181516] transition-all duration-200"
+				className="top relative flex h-14 w-3/4 justify-between gap-4 rounded-md bg-[#181516]"
 				onMouseEnter={() => setMenuState({ ...menuState, isInZone: true })}
-				onMouseLeave={() =>
+				onMouseLeave={() => {
 					setMenuState({
 						...menuState,
 						isInZone: false,
 						isHovering: false,
 						menuHover: [false, false, false],
 					})
-				}
+				}}
 			>
 				<div className="flex h-14 w-full items-center justify-between gap-4 px-2">
 					<div>
