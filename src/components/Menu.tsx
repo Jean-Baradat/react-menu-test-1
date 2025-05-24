@@ -21,7 +21,7 @@ export const Menu = () => {
 		<header className="fixed z-2 mt-3 flex w-full flex-col items-center justify-center">
 			<section
 				aria-label="Menu access"
-				className="top relative flex h-14 w-3/4 justify-between gap-4 rounded-md bg-[#181516]"
+				className={`top relative flex h-14 w-3/4 justify-between gap-4 rounded-md bg-[#181516] delay-1 ${(menuState.isHovered && menuState.isInZone) || menuState.isHovering ? "rounded-b-none" : "delay-300"}`}
 				onMouseEnter={() => setMenuState({ ...menuState, isInZone: true })}
 				onMouseLeave={() => {
 					setMenuState({
@@ -32,7 +32,7 @@ export const Menu = () => {
 					})
 				}}
 			>
-				<div className="flex h-14 w-full items-center justify-between gap-4 px-2">
+				<div className="flex h-14 w-full items-center justify-between gap-4 p-2">
 					<div>
 						<Frame className="ml-3 min-w-8 text-white" />
 					</div>
@@ -60,7 +60,7 @@ export const Menu = () => {
 							</li>
 							<li>
 								<a
-									className="cursor-pointer rounded-md px-4 py-1.5 text-[#dac6bd] transition-all hover:bg-[#ad928c4d]"
+									className="cursor-pointer rounded-md px-4 py-2 text-[#dac6bd] transition-all hover:bg-[#ad928c4d]"
 									href="/"
 									onMouseEnter={() =>
 										setMenuState({
@@ -76,7 +76,7 @@ export const Menu = () => {
 							</li>
 							<li>
 								<a
-									className="cursor-pointer rounded-md px-4 py-1.5 text-[#dac6bd] transition-all hover:bg-[#ad928c4d]"
+									className="cursor-pointer rounded-md px-4 py-2 text-[#dac6bd] transition-all hover:bg-[#ad928c4d]"
 									href="/"
 									onMouseEnter={() =>
 										setMenuState({
@@ -104,13 +104,13 @@ export const Menu = () => {
 					</nav>
 					<div>
 						<ul className="flex items-center justify-center gap-2">
-							<li className="cursor-pointer rounded-md px-3 py-1.5 text-[#dac6bd] transition-all hover:text-white">
+							<li className="cursor-pointer rounded-md px-3 py-2 text-[#dac6bd] transition-all hover:text-white">
 								<Search />
 							</li>
-							<li className="cursor-pointer rounded-md px-3 py-1.5 text-[#dac6bd] transition-all hover:text-white">
+							<li className="cursor-pointer rounded-md px-3 py-2 text-[#dac6bd] transition-all hover:text-white">
 								Login
 							</li>
-							<li className="cursor-pointer rounded-md bg-[#f2e9e3] px-4 py-1.5 text-[#0e0d0e] transition-all hover:bg-[#dac6bd]">
+							<li className="cursor-pointer rounded-md bg-[#f2e9e3] px-4 py-2 text-[#0e0d0e] transition-all hover:bg-[#dac6bd]">
 								Sign up
 							</li>
 						</ul>

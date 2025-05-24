@@ -22,7 +22,7 @@ const Item = ({
 	return (
 		<>
 			<button
-				className={`cursor-pointer rounded-md px-4 py-1.5 text-[#dac6bd] transition-all hover:bg-[#ad928c4d] ${menuState.menuHover[index] ? "bg-[#ad928c4d]" : ""}`}
+				className={`cursor-pointer rounded-md px-4 py-2 text-[#dac6bd] transition-all hover:bg-[#ad928c4d] ${menuState.menuHover[index] ? "bg-[#ad928c4d]" : ""}`}
 				onMouseEnter={() =>
 					setMenuState({
 						...menuState,
@@ -44,9 +44,9 @@ const Item = ({
 					<ChevronDown className="size-4" />
 				</p>
 			</button>
-			<div className="absolute top-12 left-0 w-full">
+			<div className="absolute top-14 left-0 w-full">
 				<div
-					className={`h-0 max-h-max overflow-y-auto rounded-b-md bg-[#181516] pt-2 ${!menuState.isHovering && "transition-[height] duration-300 ease-in-out"} [&::-webkit-scrollbar]:w-0 ${
+					className={`h-0 max-h-max overflow-y-auto rounded-b-md bg-[#181516] ${!menuState.isHovering && "transition-[height] duration-300 ease-in-out"} [&::-webkit-scrollbar]:w-0 ${
 						((menuState.isHovered && menuState.isInZone) ||
 							menuState.isHovering) &&
 						menuState.menuHover[index]
@@ -55,7 +55,7 @@ const Item = ({
 					}`}
 				>
 					<div
-						className={`px-3 pb-3 opacity-0 transition-[filter,opacity] duration-400 ${menuState.menuHover[index] ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`}
+						className={`px-2 pb-2 opacity-0 transition-[filter,opacity] duration-400 ${menuState.menuHover[index] ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`}
 					>
 						<Content numberOfGroups={numberOfGroups} />
 					</div>
