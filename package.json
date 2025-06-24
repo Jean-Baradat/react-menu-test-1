@@ -14,7 +14,6 @@
 		"prettier:write": "prettier --write .",
 		"preview": "vite preview",
 		"preview:network": "vite preview --host",
-		"unlighthouse-sync": "node scripts/unlighthouse-sync.js",
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
