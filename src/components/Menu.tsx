@@ -6,6 +6,8 @@ export type MenuState = {
 	isHovered: boolean
 	isInZone: boolean
 	isHovering: boolean
+	isFirstHovering: boolean
+	isHoverSubmenu: boolean
 	menuHover: Array<boolean>
 }
 
@@ -14,6 +16,8 @@ export const Menu = () => {
 		isHovered: false,
 		isInZone: false,
 		isHovering: false,
+		isFirstHovering: false,
+		isHoverSubmenu: false,
 		menuHover: [false, false, false],
 	})
 
@@ -22,12 +26,18 @@ export const Menu = () => {
 			<section
 				aria-label="Menu access"
 				className={`top relative flex h-14 w-3/4 justify-between gap-4 rounded-md bg-[#181516] delay-1 ${(menuState.isHovered && menuState.isInZone) || menuState.isHovering ? "rounded-b-none" : "delay-300"}`}
-				onMouseEnter={() => setMenuState({ ...menuState, isInZone: true })}
+				onMouseEnter={() =>
+					setMenuState({
+						...menuState,
+						isInZone: true,
+					})
+				}
 				onMouseLeave={() => {
 					setMenuState({
 						...menuState,
 						isInZone: false,
 						isHovering: false,
+						isFirstHovering: false,
 						menuHover: [false, false, false],
 					})
 				}}
@@ -67,6 +77,7 @@ export const Menu = () => {
 											...menuState,
 											isHovering: false,
 											isHovered: false,
+											isHoverSubmenu: true,
 											menuHover: [false, false, false],
 										})
 									}
@@ -83,6 +94,7 @@ export const Menu = () => {
 											...menuState,
 											isHovering: false,
 											isHovered: false,
+											isHoverSubmenu: true,
 											menuHover: [false, false, false],
 										})
 									}

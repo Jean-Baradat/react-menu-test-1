@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react"
 import Content from "@/components/Content"
 import { MenuState } from "@/components/Menu"
+import { useEffect } from "react"
 
 interface ItemInterface {
 	menuState: MenuState
@@ -19,6 +20,26 @@ const Item = ({
 	index,
 	menuHover,
 }: ItemInterface) => {
+	useEffect(() => {
+		if (
+			!menuState.menuHover[index] &&
+			menuState.isInZone &&
+			!menuState.isHoverSubmenu
+		) {
+			setMenuState({
+				...menuState,
+				isFirstHovering: true,
+			})
+		}
+
+		if (menuState.isHoverSubmenu) {
+			setMenuState({
+				...menuState,
+				isFirstHovering: false,
+			})
+		}
+	}, [menuState.menuHover[index]])
+
 	return (
 		<>
 			<button
@@ -28,6 +49,8 @@ const Item = ({
 						...menuState,
 						isHovered: true,
 						isInZone: true,
+						isHovering: true,
+						isHoverSubmenu: false,
 						menuHover,
 					})
 				}
@@ -35,7 +58,6 @@ const Item = ({
 					setMenuState({
 						...menuState,
 						isHovered: false,
-						isHovering: true,
 					})
 				}}
 			>
@@ -46,16 +68,20 @@ const Item = ({
 			</button>
 			<div className="absolute top-14 left-0 w-full">
 				<div
-					className={`h-0 max-h-max overflow-y-auto rounded-b-md bg-[#181516] ${!menuState.isHovering && "transition-[height] duration-300 ease-in-out"} [&::-webkit-scrollbar]:w-0 ${
+					className={`grid rounded-b-md bg-[#181516] transition-[grid-template-rows] duration-300 ease-in-out ${
 						((menuState.isHovered && menuState.isInZone) ||
 							menuState.isHovering) &&
 						menuState.menuHover[index]
-							? "h-[calc(100vh-84px)]"
-							: "h-0"
-					}`}
+							? "grid-rows-[1fr]"
+							: "grid-rows-[0fr]"
+					} ${menuState.isHovered && menuState.isInZone && menuState.isFirstHovering && menuState.isHovering ? "transition-none" : ""}`}
 				>
 					<div
-						className={`px-2 pb-2 opacity-0 transition-[filter,opacity] duration-400 ${menuState.menuHover[index] ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`}
+						className={`max-h-[calc(100vh-84px)] overflow-y-auto opacity-0 transition-[filter,opacity] delay-100 duration-300 ease-out [scrollbar-width:none] [&::-webkit-scrollbar]:w-0 ${
+							menuState.menuHover[index]
+								? "opacity-100 blur-none"
+								: "opacity-0 blur-[2px]"
+						}`}
 					>
 						<Content numberOfGroups={numberOfGroups} />
 					</div>

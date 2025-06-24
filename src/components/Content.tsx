@@ -11,15 +11,13 @@ const Content = ({ numberOfGroups = 6 }: { numberOfGroups?: number }) => {
 					<div
 						key={itemIndex}
 						className="h-40 w-full rounded-sm bg-gray-300 p-3 text-black"
-					>
-						{itemIndex + 1}
-					</div>
+					></div>
 				))}
 			</div>
 		)
 	})
 
-	return <div className="flex flex-col gap-4">{groups}</div>
+	return <div className="flex flex-col gap-4 px-2 pb-2">{groups}</div>
 }
 
 export default Content
